@@ -51,10 +51,8 @@ git pull origin (自分がdevelopにいる時は　git pull origin develop)
 ### 2️⃣ ファイルを確認
 これで最新の状態を引き継げるはず？
 
-## ローカルで商品を追加する方法
+## ローカルでwebアプリを動かす方法
 
-### 1️⃣ 最新のブランチに更新 vscode のコマンドプロンプトでpython manage.py createsuperuserコマンドでadmin用のアカウントを作る
+### 1 vscodeのICT2/webAppで　python manage.py runserverを打つ
 
-### 2️⃣ この時、メールアドレスとパスワードを設定する（適当でもおｋ）
-
-### 3️⃣ サーバを起動して、http://127.0.0.1:8000/adminにアクセスし、Itemsに商品を追加する
+### 2 サーバが動いているときにhttp://127.0.0.1:8000/にアクセスする
