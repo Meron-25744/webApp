@@ -1,0 +1,231 @@
+/* === 基本設定 === */
+body {
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  color: #333;
+  /* CSS ファイルから見た相対パス。app/static/css/ から ../images/backimage.jpg を想定 */
+  /* 他フォルダ（MEDIA）を参照する設定 */
+  background-image: url('/media/images/backimage.jpg');
+  /* 敷き詰め（タイル）にする設定 */
+  background-repeat: repeat;
+  background-size: auto; /* 元画像サイズで敷き詰め */
+  background-position: top left;
+  /* 画像が読み込めない場合のフォールバック色 */
+  background-color: #dff3f9;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h2 {
+  text-align: center;
+  margin: 60px 0 30px;
+  font-size: 1.8rem;
+}
+
+/* === ヘッダー === */
+.header {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+  /* ナビ等が背景画像を邪魔しないよう透明にする */
+  background-color: transparent;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav li {
+  margin: 0 15px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.btn {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.btn:hover {
+  background-color: #555;
+}
+
+/* === メインビジュアル === */
+.main-visual {
+  position: relative;
+  text-align: center;
+}
+
+.main-visual img {
+  width: 100%;
+  height: auto;
+}
+
+.main-copy {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 1.2rem;
+}
+
+/* === サービスの特徴 === */
+.features .feature-list {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.feature-item {
+  width: 200px;
+}
+
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+/* === おすすめ商品 === */
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  width: 90%;
+  margin: 0 auto 60px;
+}
+
+.product-item {
+  width: 220px;
+  text-align: center;
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 8px;
+  /* 背景が見えるよう透過度を上げる（0.65） */
+  background-color: rgba(255,255,255,0.65);
+}
+
+
+.product-title {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.product-desc {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* === お客様の声 === */
+.voices {
+  background-color: #f5f5f5;
+  padding: 40px 0;
+}
+
+.voice-list {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.voice-item {
+  width: 250px;
+}
+
+.voice-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #999;
+}
+
+/* === CTAセクション === */
+.cta {
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.cta-btn {
+  background-color: #fff;
+  color: #222;
+  margin-top: 20px;
+}
+
+/* === フッター === */
+.footer {
+  background-color: #f8f8f8;
+  padding: 40px 0 20px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-bottom: 30px;
+}
+
+.footer-column h3 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column li {
+  margin-bottom: 5px;
+}
+
+.footer-column a {
+  text-decoration: none;
+  color: #333;
+}
+
+.footer-column a:hover {
+  text-decoration: underline;
+}
+
+/* 背景に重ねる主要コンテナの半透明設定（全体に適用） */
+.container, .card {
+  background: rgba(255,255,255,0.65);
+}

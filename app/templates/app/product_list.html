@@ -1,0 +1,73 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+/* 1. アニメーションの定義 */
+@keyframes fadeInSlideUp {
+  from {
+    opacity: 0;           /* 最初は透明 */
+    transform: translateY(30px); /* 下から30pxの位置 */
+  }
+  to {
+    opacity: 1;           /* 最後は完全に表示 */
+    transform: translateY(0);    /* 元の位置に戻る */
+  }
+}
+
+/* 2. 商品カードに基本アニメーションを適用 */
+.card {
+  /* 0.6秒かけてフェードイン&スライドアップ。終了状態(forwards)を保持。 */
+  animation: fadeInSlideUp 0.6s ease-out forwards;
+  opacity: 0; /* アニメーション開始まで透明に保つ */
+}
+
+/* 3. 静的な遅延設定 (順番に表示される効果) */
+/* nth-child(n) を使って、各カードに表示遅延を設定します。 */
+.col-6:nth-child(1) .card { animation-delay: 0.1s; }
+.col-6:nth-child(2) .card { animation-delay: 0.2s; }
+.col-6:nth-child(3) .card { animation-delay: 0.3s; }
+.col-6:nth-child(4) .card { animation-delay: 0.4s; }
+.col-6:nth-child(5) .card { animation-delay: 0.5s; }
+.col-6:nth-child(6) .card { animation-delay: 0.6s; }
+.col-6:nth-child(7) .card { animation-delay: 0.7s; }
+.col-6:nth-child(8) .card { animation-delay: 0.8s; }
+
+/* 4. ホバー時の軽微な浮き上がり効果（任意） */
+.card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+</style>
+
+<div class="container my-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">商品一覧</h2>
+    {% if user.is_authenticated %}
+      <a href="{% url 'product_add' %}" class="btn btn-sm btn-success">商品追加はこちらから</a>
+    {% endif %}
+  </div>
+  <div class="row">
+    {% for item in item_data %}
+      <div class="col-6 col-md-4 col-lg-3 mb-4">
+        <div class="card h-100">
+          {% if item.image %}
+            <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.title }}">
+          {% endif %}
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ item.title }}</h5>
+            <p class="card-text text-truncate">{{ item.description }}</p>
+            <p class="mt-auto mb-2 text-danger font-weight-bold">{{ item.price }} 円</p>
+            <a href="{% url 'product' item.slug %}" class="btn btn-sm btn-primary">詳細を見る</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <div class="col-12">
+        <p>商品が登録されていません。</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

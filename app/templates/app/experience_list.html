@@ -1,0 +1,34 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">体験一覧</h2>
+    {% if user.is_authenticated %}
+      <div>
+        <a href="{% url 'experience_add' %}" class="btn btn-sm btn-primary">体験の追加はこちらから</a>
+      </div>
+    {% endif %}
+  </div>
+  <div class="row">
+    {% for exp in experiences %}
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          {% if exp.image %}
+            <img src="{{ exp.image.url }}" class="card-img-top" alt="{{ exp.title }}">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ exp.title }}</h5>
+            <p class="card-text text-truncate">{{ exp.description }}</p>
+            <p class="text-danger">{{ exp.price }} 円</p>
+            <a href="{% url 'experience_detail' exp.slug %}" class="btn btn-sm btn-primary">詳細・予約</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>現在、体験はありません。</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

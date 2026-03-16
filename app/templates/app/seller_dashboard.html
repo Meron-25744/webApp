@@ -1,0 +1,36 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+  <h2>出品者ダッシュボード</h2>
+
+  {% if sales %}
+    <p class="text-right font-weight-bold">合計売上高: {{ total_revenue }} 円</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>商品</th>
+          <th>価格</th>
+          <th>合計販売数</th>
+          <th>売上高</th>
+          <th>詳細</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in sales %}
+        <tr>
+          <td>{{ row.item.title }}</td>
+          <td>{{ row.item.price }} 円</td>
+          <td>{{ row.sold }}</td>
+          <td>{{ row.revenue }} 円</td>
+          <td><a href="{% url 'product' row.item.slug %}" class="btn btn-sm btn-primary">商品ページ</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>出品した商品がありません。</p>
+  {% endif %}
+</div>
+{% endblock %}

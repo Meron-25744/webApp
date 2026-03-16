@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>竹の体験予約 | 竹ゆい</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <style>
+    body {
+      font-family: "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #1f2937;
+      color: #fff;
+      padding: 15px 25px;
+      display: flex;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 22px;
+      margin-left: 10px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .top-bar h2 {
+      font-size: 20px;
+      margin: 0;
+    }
+
+    .activity {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 15px 0;
+    }
+
+    .activity img {
+      width: 120px;
+      height: 120px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+
+    .activity-info {
+      flex: 1;
+    }
+
+    .activity-info h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      color: #111;
+    }
+
+    .activity-info p {
+      margin: 5px 0;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .reserve-section {
+      background-color: #f3f4f6;
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    label {
+      font-size: 14px;
+      color: #333;
+      font-weight: 600;
+    }
+
+    input, select {
+      padding: 6px 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .reserve-btn {
+      background-color: #15803d;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 15px;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: background-color 0.2s;
+    }
+
+    .reserve-btn:hover {
+      background-color: #166534;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      padding: 15px 0;
+      margin-top: 30px;
+    }
+
+    .material-symbols-outlined {
+      vertical-align: middle;
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="material-symbols-outlined">event_available</span>
+    <h1>竹の体験予約</h1>
+  </header>
+
+  <div class="container">
+    <div class="top-bar">
+      <h2>体験一覧</h2>
+      <p style="color:#555; font-size:14px;">竹の魅力を体感できるアクティビティをご予約ください。</p>
+    </div>
+
+    <!-- 体験1 -->
+    <div class="activity">
+      <img src="https://placehold.jp/200x200.png" alt="竹細工体験">
+      <div class="activity-info">
+        <h3>竹細工体験（コップ・箸づくり）</h3>
+        <p>職人の指導のもと、自分だけの竹製コップや箸を作れます。</p>
+        <p>所要時間：約90分　／　料金：¥2,000（税込）</p>
+        <div class="reserve-section">
+          <label for="date1">日付:</label>
+          <input type="date" id="date1">
+          <label for="people1">人数:</label>
+          <select id="people1">
+            <option>1名</option>
+            <option>2名</option>
+            <option>3名</option>
+            <option>4名</option>
+            <option>5名以上</option>
+          </select>
+          <button class="reserve-btn">
+            <span class="material-symbols-outlined">check_circle</span> 予約する
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 体験2 -->
+    <div class="activity">
+      <img src="https://placehold.jp/200x200.png" alt="竹林散策ツアー">
+      <div class="activity-info">
+        <h3>竹林散策ツアー（ガイド付き）</h3>
+        <p>地元の案内人と一緒に、四季折々の竹林を楽しむ癒やしのツアーです。</p>
+        <p>所要時間：約60分　／　料金：¥1,000（税込）</p>
+        <div class="reserve-section">
+          <label for="date2">日付:</label>
+          <input type="date" id="date2">
+          <label for="people2">人数:</label>
+          <select id="people2">
+            <option>1名</option>
+            <option>2名</option>
+            <option>3名</option>
+            <option>4名</option>
+            <option>5名以上</option>
+          </select>
+          <button class="reserve-btn">
+            <span class="material-symbols-outlined">check_circle</span> 予約する
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 体験3 -->
+    <div class="activity">
+      <img src="https://placehold.jp/200x200.png" alt="竹灯りづくり体験">
+      <div class="activity-info">
+        <h3>竹灯りづくり体験</h3>
+        <p>竹を削って自分だけの灯りを作るワークショップ。夜には幻想的な雰囲気に。</p>
+        <p>所要時間：約120分　／　料金：¥3,000（税込）</p>
+        <div class="reserve-section">
+          <label for="date3">日付:</label>
+          <input type="date" id="date3">
+          <label for="people3">人数:</label>
+          <select id="people3">
+            <option>1名</option>
+            <option>2名</option>
+            <option>3名</option>
+            <option>4名</option>
+            <option>5名以上</option>
+          </select>
+          <button class="reserve-btn">
+            <span class="material-symbols-outlined">check_circle</span> 予約する
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 竹ゆい - 体験予約ページ
+  </footer>
+</body>
+</html>

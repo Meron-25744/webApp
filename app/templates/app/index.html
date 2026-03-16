@@ -1,0 +1,219 @@
+{% extends "app/base.html" %}
+
+{% load static %}
+
+{% block extra_css%}
+ <link rel="stylesheet" href="{% static 'css/style_top.css' %}" />
+{% endblock%}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECサイト | トップページ</title>
+  <link rel="stylesheet" href="style.css">
+  {% comment %} お気に入りマーク {% endcomment %}
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+</head>
+
+<body>
+
+  <!-- メインビジュアル -->
+  <section class="main-visual" aria-label="メインビジュアル">
+    <style>
+      .main-visual {
+        position: relative;
+        background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('{% static "竹林.jpg" %}');
+        background-size: cover;
+        background-position: center center;
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+      }
+      .main-visual .hero-inner {
+        text-align: center;
+        padding: 2rem;
+        backdrop-filter: blur(0.4px);
+      }
+      .main-visual .hero-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: .8rem;
+        text-shadow: 0 6px 18px rgba(0,0,0,0.6);
+      }
+      .main-visual .hero-sub {
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
+        text-shadow: 0 4px 12px rgba(0,0,0,0.45);
+      }
+      .hero-cta {
+        background: rgba(255,255,255,0.95);
+        color: #2d2d2d;
+        border-radius: 30px;
+        padding: .6rem 1.2rem;
+        font-weight: 600;
+      }
+      @media (max-width: 576px) {
+        .main-visual { min-height: 40vh; }
+        .main-visual .hero-title { font-size: 1.4rem; }
+      }
+    </style>
+
+    <div id="fadein" class="fadein-before">
+      <div class="hero-inner">
+        <h1 class="hero-title">TAKEYUI — 竹と暮らす、新しい日常</h1>
+        <p class="hero-sub">手作りの竹製品や体験をオンラインで簡単に見つけて予約できます。</p>
+        <a class="btn hero-cta" href="{% url 'product_list' %}">おすすめ商品を見る</a>
+        <a class="btn hero-cta ml-2" href="{% url 'experience_list' %}">体験を探す</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- サービスの特徴 -->
+  <section class="features">
+    <h2>サービスの特徴</h2>
+    <div class="feature-list">
+      <div class="feature-item">
+        {% comment %} headにlinkを埋め込んでここでそれを表示する お気に入りマーク {% endcomment %}
+        <span class="material-symbols-outlined">favorite</span>
+        <p>お客様のご要望をヒアリングしながら、ぴったりの商品をお届けいたします。</p>
+      </div>
+      <div class="feature-item">
+        <span class="material-symbols-outlined">search</span>
+        <p>お客様が欲しい商品の特徴で検索することができます。</p>
+      </div>
+      <div class="feature-item">
+        <span class="material-symbols-outlined">create</span>
+        <p>竹商品の登録履歴や竹商品の購入履歴をお客様のアカウントに紐づけし、一元管理できます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- おすすめ商品 -->
+  <section class="recommend">
+    <style>
+      @keyframes fadeInSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px); /* 下から30pxスライドアップ */
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* 2. 初期状態（透明＋静止） */
+      .product-item {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 1.0s ease, transform 1.0s ease;
+      }
+
+      /* 3. アニメーション発火時の状態 */
+      .product-item.visible {
+        animation: fadeInSlideUp 1.5s ease-out forwards;
+      }
+
+      /* 4. ホバー時の軽い浮き上がり（任意） */
+      .product-item:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s ease-in-out;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+    </style>
+
+    <h2>おすすめの商品</h2>
+    <div class="d-flex justify-content-center mb-2">
+      <a class="btn btn-outline-primary" href="{% url 'product_list' %}">商品一覧を見る</a>
+    </div>
+    <div class="product-list">
+      {% for item in item_data %}
+      <div class="product-item">
+        <img src="{{ item.image.url }}" alt="{{ item.title }}">
+        <p class="product-title">{{ item.title }}</p>
+        <p class="product-desc">{{ item.description }}</p>
+        <a class="btn" href="{% url 'product' item.slug %}">詳細を見る</a>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- お客様の声 -->
+  <section class="voices">
+    <h2>お客様の声</h2>
+    <div class="voice-list">
+      <div class="voice-item">
+        <div class="voice-icon">◎</div>
+        <p>“ここで購入した竹のバッグはとても頑丈で良い。購入してから2年ほど経過したが、全く問題ない。”</p>
+      </div>
+      <div class="voice-item">
+        <div class="voice-icon">◎</div>
+        <p>“竹の活け造り体験が非常に良かった。講師の方も丁寧だった。”</p>
+      </div>
+      <div class="voice-item">
+        <div class="voice-icon">〇</div>
+        <p>“竹のバッグを購入した。品質は良かったが、デザインが足りないと感じた。”</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 行動喚起セクション -->
+  <section class="cta">
+    <h2>竹に関するイベントの告知</h2>
+    <p>コーナーやキャンペーンなどをお知らせします。</p>
+    <button class="btn cta-btn">詳細はこちら</button>
+  </section>
+
+  <!-- フッター -->
+  <footer class="footer">
+      <div class="footer-links">
+        <div class="footer-column">
+          <ul>
+            <li><a href="{% url 'history' %}">商品の購入履歴</a></li>
+            <li><a href="{% url 'user_reservations' %}">体験の予約状況</a></li>
+          </ul>
+        </div>
+      </div>
+  </footer>
+
+  <script>
+    //フェードインさせる要素を取得
+    const FADEIN_ELEM = document.getElementById('fadein');
+
+    //スクロール時に要素をフェードインさせるイベントを設定する
+    window.addEventListener('load', () => {
+      FADEIN_ELEM.classList.add('fadein-after');
+    });
+  </script>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const items = document.querySelectorAll(".product-item");
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target); // 一度表示されたら監視解除
+            }
+          });
+        }, {
+          threshold: 0.2 // 要素の20%が見えたら発火
+        });
+
+        items.forEach(item => observer.observe(item));
+      });
+  </script>
+
+</body>
+</html>
+
+
+{% endblock %}

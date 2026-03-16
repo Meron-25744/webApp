@@ -1,0 +1,98 @@
+{% load cart_tags %}{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <title>ICT2</title>
+    {% block extra_css %}{% endblock %}
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/">TAKEYUI</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <form class="form-inline my-2 my-lg-0 mr-3" method="post" action="{% url 'product_list' %}">
+            {% csrf_token %}
+            <input class="form-control mr-sm-2" type="search" placeholder="商品を検索" aria-label="Search" name="q" value="{{ q|default:'' }}" style="min-width:200px;">
+            <button class="btn btn-light my-2 my-sm-0 ml-2" type="submit">検索</button>
+          </form>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">ホーム</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'product_list' %}">商品一覧</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'experience_list' %}">体験一覧</a>
+            </li>
+
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'profile' %}">プロフィール</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'order' %}">
+                カート
+                <span class="badge badge-pill badge-warning">
+                  {{ request.user|itemCount }}
+                </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_logout' %}">ログアウト</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_signup' %}">サインアップ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_login' %}">ログイン</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <div class="container">{% block content %} {% endblock %}</div>
+    </main>
+
+    <footer class="py-2 bg-dark">
+      <p class="m-0 text-center text-white">
+        竹ゆい &copy; Django Startup 2025
+      </p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+    {% block extra_js %} {% endblock %}
+  </body>
+</html>

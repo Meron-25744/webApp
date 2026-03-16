@@ -1,0 +1,29 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="row">
+    <!-- 画像 -->
+    <div class="col-md-6">
+      {% if item_data.image %}
+        <img src="{{ item_data.image.url }}" alt="{{ item_data.name }}" class="img-fluid">
+      {% endif %}
+    </div>
+
+    <!-- 商品情報 -->
+    <div class="col-md-6">
+      <h2>{{ item_data.title }}</h2>
+      <h4 class="text-danger">{{ item_data.price }} 円</h4>
+      <p>{{ item_data.description }}</p>
+
+      <!-- カートボタン -->
+      {% if user.is_authenticated and item_data.owner and item_data.owner == user %}
+        <button class="btn btn-secondary" disabled>自分の商品は購入できません</button>
+      {% else %}
+        <a href="{% url 'additem' item_data.slug %}" class="btn btn-primary">カートに追加</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

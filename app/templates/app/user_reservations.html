@@ -1,0 +1,25 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+  <h2>予約一覧</h2>
+  {% if reservations %}
+  <div class="list-group">
+    {% for r in reservations %}
+    <div class="list-group-item">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{ r.experience.title }}</h5>
+        <small>{{ r.created_at }}</small>
+      </div>
+      <p class="mb-1">日付: {{ r.reserved_date }} | 人数: {{ r.people }}</p>
+      <p class="mb-1">ステータス: {{ r.get_status_display }}</p>
+      <a href="{% url 'experience_detail' r.experience.slug %}" class="btn btn-sm btn-primary">体験ページへ</a>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+    <p>予約がありません。</p>
+  {% endif %}
+</div>
+{% endblock %}

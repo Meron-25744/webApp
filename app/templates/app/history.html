@@ -1,0 +1,45 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="my-5">
+  <h3>購入履歴</h3>
+</div>
+
+{% if orders.exists %}
+  {% for order in orders %}
+    <div class="row order mb-4">
+      <div class="col-md-9">
+        <div class="card">
+          <div class="card-body px-4 py-3">
+            <h5>注文 #{{ order.pk }} - {{ order.ordered_date|date:"Y/m/d H:i" }}</h5>
+            <hr />
+            {% for order_item in order.items.all %}
+              <div class="row mb-3">
+                <div class="col-md-3 text-center">
+                  <img src="{{ order_item.item.image.url }}" class="img-fluid" alt="{{ order_item.item.title }}" />
+                </div>
+                <div class="col-md-6">
+                  <h5>{{ order_item.item.title }}</h5>
+                  <p class="mb-1">数量：{{ order_item.quantity }}</p>
+                </div>
+                <div class="col-md-3 text-right">
+                  <p>価格：<span class="text-danger font-weight-bold">{{ order_item.get_total_item_price }}円</span></p>
+                </div>
+              </div>
+              {% if not forloop.last %}
+                <hr />
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+
+{% else %}
+  <p>購入履歴はありません。</p>
+{% endif %}
+
+{% endblock %}
+
